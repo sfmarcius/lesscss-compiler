@@ -17,12 +17,13 @@
 
     <name>lesscss-compiler</name>
     <description>Custom LESS CSS Compiler for Java</description>
-    <url>http://github.com/sfmarcius/lesscss</url>
+    <url>http://github.com/sfmarcius/lesscss-compiler</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <netbeans.hint.displayName>${project.artifactId} ${project.version}</netbeans.hint.displayName>
+        <github.maven.repo>file:///D:/sfmarcius/Documents/NetBeansProjects/maven-repo</github.maven.repo>
     </properties>
 
     <dependencies>
