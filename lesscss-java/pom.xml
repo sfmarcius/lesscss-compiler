@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.lesscss</groupId>
         <artifactId>lesscss-compiler</artifactId>
-        <version>1.3.3.CUSTOM</version>
+        <version>1.4.1.CUSTOM</version>
         <relativePath>..</relativePath>
     </parent>
 

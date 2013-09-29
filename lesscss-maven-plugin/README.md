@@ -14,7 +14,7 @@ Declare the plugin and its goals. The process-sources phase is bound to by defau
     <plugin>
         <groupId>org.lesscss</groupId>
         <artifactId>lesscss-maven-plugin</artifactId>
-        <version>1.3.3.CUSTOM</version>
+        <version>1.4.1.CUSTOM</version>
         <executions>
             <execution>
                 <goals>
@@ -33,7 +33,7 @@ Example configuration for web project
     <plugin>
         <groupId>org.lesscss</groupId>
         <artifactId>lesscss-maven-plugin</artifactId>
-        <version>1.3.3.CUSTOM</version>
+        <version>1.4.1.CUSTOM</version>
         <configuration>
             <sourceDirectory>${project.basedir}/src/main/webapp/less</sourceDirectory>
             <outputDirectory>${project.build.directory}/${project.build.finalName}/css</outputDirectory>
