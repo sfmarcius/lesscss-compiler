@@ -13,7 +13,7 @@
 
     <groupId>org.lesscss</groupId>
     <artifactId>lesscss-maven-plugin</artifactId>
-    <version>1.3.3.CUSTOM</version>
+    <version>1.4.1.CUSTOM</version>
     <packaging>maven-plugin</packaging>
 
     <name>lesscss-maven-plugin</name>

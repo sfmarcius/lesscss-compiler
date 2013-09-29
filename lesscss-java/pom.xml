@@ -13,7 +13,7 @@
 
     <groupId>org.lesscss</groupId>
     <artifactId>lesscss-java</artifactId>
-    <version>1.3.3.CUSTOM</version>
+    <version>1.4.1.CUSTOM</version>
     <packaging>jar</packaging>
 
     <name>lesscss-java</name>
