@@ -63,8 +63,8 @@ public class MultithreadedIT extends AbstractCompileIT {
     }
 	
 	protected void testCompile(File lessFile, File cssFile) throws Exception {
-		String expected = FileUtils.readFileToString(cssFile);
-		String actual = lessCompiler.compile(lessFile);
-		waiter.assertEquals(expected.replace("\r\n", "\n"), actual);
+		String expected = FileUtils.readFileToString(cssFile).replace("\r\n", "\n").replaceAll("\\s+$", "");
+		String actual = lessCompiler.compile(lessFile).replace("\r\n", "\n").replaceAll("\\s+$", "");
+		waiter.assertEquals(expected, actual);
 	}
 }

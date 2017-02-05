@@ -121,6 +121,7 @@ public class CompileMojoTest extends AbstractMojoTestCase {
 		whenNew(File.class).withArguments(sourceDirectory, "less.less").thenReturn(input);
 		whenNew(File.class).withArguments(outputDirectory, "less.css").thenReturn(output);
 
+        when(output.exists()).thenReturn(true);
 		when(output.getParentFile()).thenReturn(parent);
 		when(parent.exists()).thenReturn(true);
 
@@ -167,6 +168,7 @@ public class CompileMojoTest extends AbstractMojoTestCase {
 		whenNew(File.class).withArguments(sourceDirectory, "less.less").thenReturn(input);
 		whenNew(File.class).withArguments(outputDirectory, "less.css").thenReturn(output);
 
+        when(output.exists()).thenReturn(true);
 		when(output.getParentFile()).thenReturn(parent);
 		when(parent.exists()).thenReturn(true);
 
@@ -329,6 +331,7 @@ public class CompileMojoTest extends AbstractMojoTestCase {
 		whenNew(File.class).withArguments(sourceDirectory, "less.less").thenReturn(input);
 		whenNew(File.class).withArguments(outputDirectory, "less.css").thenReturn(output);
 
+        when(output.exists()).thenReturn(true);
 		when(output.getParentFile()).thenReturn(parent);
 		when(parent.exists()).thenReturn(true);
 
@@ -402,6 +405,7 @@ public class CompileMojoTest extends AbstractMojoTestCase {
 		whenNew(File.class).withArguments(sourceDirectory, "less.less").thenReturn(input);
 		whenNew(File.class).withArguments(outputDirectory, "less.css").thenReturn(output);
 
+        when(output.exists()).thenReturn(true);
 		when(output.getParentFile()).thenReturn(parent);
 		when(parent.exists()).thenReturn(false);
 		when(parent.mkdirs()).thenReturn(true);
@@ -471,6 +475,45 @@ public class CompileMojoTest extends AbstractMojoTestCase {
 		verify(output, times(2)).getParentFile();
 		verify(parent).exists();
 		verify(parent).mkdirs();
+	}
+        
+	@Test
+	public void testExecutionOutputFilesNamedFromOutputFileFormat() throws Exception {
+            
+		setVariableValueToObject(mojo, "outputFileFormat", "{fileName}-min.css");
+		files = new String[] { "less.less" };
+
+		when(buildContext.newScanner(sourceDirectory, true)).thenReturn(scanner);
+		when(scanner.getIncludedFiles()).thenReturn(files);
+
+		whenNew(LessCompiler.class).withNoArguments().thenReturn(lessCompiler);
+
+		whenNew(File.class).withArguments(sourceDirectory, "less.less").thenReturn(input);
+		whenNew(File.class).withArguments(outputDirectory, "less-min.css").thenReturn(output);
+
+		when(output.getParentFile()).thenReturn(parent);
+		when(parent.exists()).thenReturn(true);
+		when(parent.mkdirs()).thenReturn(true);
+                
+		whenNew(LessSource.class).withArguments(input).thenReturn(lessSource);
+                
+
+		mojo.execute();
+
+		verify(buildContext).newScanner(same(sourceDirectory), eq(true));
+		verify(scanner).setIncludes(same(includes));
+		verify(scanner).setExcludes(same(excludes));
+		verify(scanner).scan();
+
+		verifyNew(LessCompiler.class).withNoArguments();
+		verify(lessCompiler).setCompress(false);
+		verify(lessCompiler).setEncoding(null);
+
+		verifyNew(File.class).withArguments(sourceDirectory, "less.less");
+		verifyNew(File.class).withArguments(outputDirectory, "less-min.css");
+
+		verify(output, times(1)).getParentFile();
+		verify(parent).exists();
 	}
 
 	@After

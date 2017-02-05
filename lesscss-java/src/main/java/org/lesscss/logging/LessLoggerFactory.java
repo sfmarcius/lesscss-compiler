@@ -1,6 +1,7 @@
 package org.lesscss.logging;
 
 public class LessLoggerFactory {
+
     private static LessLoggerFactory instance = new LessLoggerFactory();
     private LessLoggerProvider loggerProvider;
 
@@ -8,7 +9,7 @@ public class LessLoggerFactory {
         try {
             Class.forName("org.slf4j.Logger");
             loggerProvider = new SLF4JLessLoggerProvider();
-        } catch(ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             loggerProvider = new JULILessLoggerProvider();
         }
     }

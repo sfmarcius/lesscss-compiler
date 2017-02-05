@@ -8,4 +8,4 @@ h2 {
 
 css = new File(basedir, "target/webapp-testing/css/test.css")
 assert css.exists()
-assert css.getText().equals(expected)
+assert css.getText().replace("\r\n", "\n").replaceAll(/\s+$/, "\n").equals(expected)
